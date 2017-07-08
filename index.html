@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,9 +13,9 @@
     var img = new Image();
     var img1 = new Image();
     var imgdi = new Image();
-    imgdi.src = "images/ground.png";
-    img.src = "images/pipe.png";
-    img1.src = "images/zz.png";
+    imgdi.src = "./ou/images/ground.png";
+    img.src = "./ou/images/pipe.png";
+    img1.src = "./ou/images/zz.png";
     var i = 0;
     var upPipeX = 400;
     var downPipeX = 400;
@@ -27,11 +27,11 @@
     var count = 0;
     var isSorce = false;
     var v1 = 10, v2, a = 2, s = 0;
-    var imgSrcArr = ["./images/0.gif", "./images/1.gif", "./images/2.gif"];
+    var imgSrcArr = ["./ou/images/0.gif", "./ou/images/1.gif", "./ou/images/2.gif"];
     alert("开始咯");
     var timer =  setInterval(function () {
         canvas.clearRect(0, 0, 400, 600);
-        niaobg.src = "images/bg.png";
+        niaobg.src = "./ou/images/bg.png";
         canvas.drawImage(niaobg, 0, 0, 500, 700);
         i++;
         i = i % 3;
