@@ -7,15 +7,16 @@
 <canvas id="canvas" width="400" height="600"></canvas>
 <body>
 <script type="application/javascript">
+    alert("开始咯");
     var canvas = document.getElementById("canvas").getContext('2d');
     var niao1 = new Image();
     var niaobg = new Image();
     var img = new Image();
     var img1 = new Image();
     var imgdi = new Image();
-    imgdi.src = "./ou/images/ground.png";
-    img.src = "./ou/images/pipe.png";
-    img1.src = "./ou/images/zz.png";
+    imgdi.src = "images/ground.png";
+    img.src = "images/pipe.png";
+    img1.src = "images/zz.png";
     var i = 0;
     var upPipeX = 400;
     var downPipeX = 400;
@@ -24,27 +25,31 @@
     var downPipeHeight = 400;
     var birdy = 250;
     var birdx = 100;
-    var count = 0;
+    var count = 1;
+    var counts = 0;
     var isSorce = false;
     var v1 = 10, v2, a = 2, s = 0;
-    var imgSrcArr = ["./ou/images/0.gif", "./ou/images/1.gif", "./ou/images/2.gif"];
-    alert("开始咯");
-    var timer =  setInterval(function () {
+    var imgSrcArr = ["./images/0.gif", "./images/1.gif", "./images/2.gif"];
+    var to = prompt("请输入关卡数(1-9)");
+    var timer = setInterval(function () {
         canvas.clearRect(0, 0, 400, 600);
-        niaobg.src = "./ou/images/bg.png";
+        niaobg.src = "images/bg.png";
         canvas.drawImage(niaobg, 0, 0, 500, 700);
         i++;
         i = i % 3;
         niao1.src = imgSrcArr[i];
         canvas.drawImage(niao1, 100, birdy, 40, 40);
-
+//
         v2 = v1 + a;
         s = (v1 + v2) / 2;
         birdy += s;
-
-
-        upPipeX = upPipeX - 5;
-        downPipeX = downPipeX - 5;
+        console.log(s);
+        if (to > 9) {
+            to = 9;
+            console.log(to);
+        }
+        upPipeX = upPipeX - to;
+        downPipeX = downPipeX - to;
         if (upPipeX < -100) {
             upPipeX = 400;
             downPipeX = 400;
@@ -52,22 +57,24 @@
             downPipey = upPipeHeighet + 200;
             downPipeHeight = 700 - downPipey;
         }
-        if (birdx > upPipeX+100) {
-            count = count + 1;
+        if (birdx > Math.abs(upPipeX+downPipeX)) {
+            count++;
+            counts = parseInt(count / 10);
+            a = a + 0.05;
         }
-            canvas.fillStyle = "rgb(25,25,25)";
-            canvas.font = "30px Accent";
-            canvas.fillText(count,180,100);
         canvas.drawImage(img, 150, 500, 150, 800, upPipeX, 0, 100, upPipeHeighet);
         canvas.drawImage(img1, 0, 0, 150, 800, downPipeX, downPipey, 100, downPipeHeight);
         canvas.drawImage(imgdi, 0, 550, 400, 200)
-        if ((birdy + 40 > 550 || birdy < 0 ) || ((100+40)>downPipeX)&&(birdy + 30 >downPipey)&&(140<downPipeX+120)||((100+40)>upPipeX)&&(birdy <upPipeHeighet)&&(140<upPipeX+120))
-        {clearInterval(timer);
+        canvas.fillStyle = "rgb(25,25,25)";
+        canvas.font = "30px Accent";
+        canvas.fillText(counts, 180, 100);
+        if ((birdy + 35 > 550 || birdy < 0 ) || ((100 + 40) > downPipeX) && (birdy + 30 > downPipey) && (140 < downPipeX + 120) || ((100 + 40) > upPipeX) && (birdy < upPipeHeighet) && (140 < upPipeX + 120)) {
+            clearInterval(timer);
             canvas.fillStyle = "rgb(25,25,25)";
             canvas.font = "30px Accent";
-            canvas.fillText("GAME OVER",100,300);
-            canvas.fillText("你的得分为 " + count,100,200);
-            }
+            canvas.fillText("GAME OVER", 100, 300);
+            canvas.fillText("你的得分为 " , 115, 50);
+        }
 
     }, 80);
 
