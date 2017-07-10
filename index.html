@@ -14,6 +14,8 @@
     var img = new Image();
     var img1 = new Image();
     var imgdi = new Image();
+    var imgdie = new Image();
+    imgdie.src = "images/pipe.png";
     imgdi.src = "images/ground.png";
     img.src = "images/pipe.png";
     img1.src = "images/zz.png";
@@ -27,10 +29,10 @@
     var birdx = 100;
     var count = 1;
     var counts = 0;
-    var isSorce = false;
     var v1 = 10, v2, a = 2, s = 0;
-    var imgSrcArr = ["./images/0.gif", "./images/1.gif", "./images/2.gif"];
-    var to = prompt("请输入关卡数(1-9)");
+//    var to2;
+    var imgSrcArr = ["./images/0.png", "./images/1.png", "./images/2.png"];
+    var to = prompt("请输入关卡数(1-5)");
     var timer = setInterval(function () {
         canvas.clearRect(0, 0, 400, 600);
         niaobg.src = "images/bg.png";
@@ -38,18 +40,19 @@
         i++;
         i = i % 3;
         niao1.src = imgSrcArr[i];
-        canvas.drawImage(niao1, 100, birdy, 40, 40);
+        canvas.drawImage(niao1, birdx, birdy, 40, 40);
 //
         v2 = v1 + a;
         s = (v1 + v2) / 2;
         birdy += s;
-        console.log(s);
-        if (to > 9) {
-            to = 9;
-            console.log(to);
+//        console.log(s);
+        if (  1<= to <= 5 ) {
+            to = 50;
         }
+        console.log(to);
         upPipeX = upPipeX - to;
         downPipeX = downPipeX - to;
+        console.log(upPipeX);
         if (upPipeX < -100) {
             upPipeX = 400;
             downPipeX = 400;
@@ -57,23 +60,40 @@
             downPipey = upPipeHeighet + 200;
             downPipeHeight = 700 - downPipey;
         }
-        if (birdx > Math.abs(upPipeX+downPipeX)) {
+        if (birdx > Math.abs(upPipeX + 90)) {
             count++;
             counts = parseInt(count / 10);
             a = a + 0.05;
         }
+
         canvas.drawImage(img, 150, 500, 150, 800, upPipeX, 0, 100, upPipeHeighet);
         canvas.drawImage(img1, 0, 0, 150, 800, downPipeX, downPipey, 100, downPipeHeight);
-        canvas.drawImage(imgdi, 0, 550, 400, 200)
+        canvas.drawImage(imgdi, 0, 550, 400, 200);
+//        if (counts < 5) {
+//            canvas.fillText("1级: ", 110, 100);
+//        }else if(counts < 10 ){
+//            canvas.fillText("2级: ", 110, 100);
+//        }else if(counts < 15 ){
+//            canvas.fillText("3级: ", 110, 100);
+//        }else if(counts < 20 ){
+//            canvas.fillText("4级: ", 110, 100);
+//        }else if(counts < 25 ){
+//            canvas.fillText("5级: ", 110, 100);
+//        }else if(counts < 30 ){
+//            canvas.fillText("6级: ", 110, 100);
+//        }else if(counts < 35 ){
+//            canvas.fillText("7级: ", 110, 100);
+//        }
         canvas.fillStyle = "rgb(25,25,25)";
         canvas.font = "30px Accent";
-        canvas.fillText(counts, 180, 100);
+        canvas.fillText(counts, 180, 102);
         if ((birdy + 35 > 550 || birdy < 0 ) || ((100 + 40) > downPipeX) && (birdy + 30 > downPipey) && (140 < downPipeX + 120) || ((100 + 40) > upPipeX) && (birdy < upPipeHeighet) && (140 < upPipeX + 120)) {
             clearInterval(timer);
             canvas.fillStyle = "rgb(25,25,25)";
             canvas.font = "30px Accent";
             canvas.fillText("GAME OVER", 100, 300);
-            canvas.fillText("你的得分为 " , 115, 50);
+            canvas.drawImage(imgdie,840,0,115,90,98,birdy-5,40,40);
+//            canvas.fillText("你的得分为 " , 115, 50);
         }
 
     }, 80);
