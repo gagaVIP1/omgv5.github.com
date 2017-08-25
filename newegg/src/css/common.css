@@ -1,0 +1,44 @@
+.cl{
+	clear: both;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.h12{
+	height: 12px;
+}
+.color6{
+	color: #666;
+}
+.size{
+	font-size: 12px;
+}
+a:hover{
+	text-decoration: underline;
+	color: blue;
+	cursor: pointer;
+}
+i{
+	font-style: normal;
+	text-decoration: none;
+	font-size: 20px;
+	position: absolute;
+	left: 0;
+	top: -14px;
+}
+u{
+	display: block;
+	width: 15px;
+	height: 20px;
+	/*background-color: red;*/
+	font-style: normal;
+	text-decoration: none;
+	font-size: 50px;
+	overflow: hidden;
+	position: relative;
+	left: 63px;
+	top: 6px;
+}
